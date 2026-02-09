@@ -1,0 +1,10 @@
+{
+  "name": "Basic Cab",
+  "version": "1.0",
+  "author": "superhac",
+  "description": "A plain cab setup theme that reflects how vpx lays out a 3 screen system.",
+  "preview_image": "preview.png",
+  "supported_screens": 3,
+  "type": "cab",
+  "change_log": "what changed in this version?"
+}
