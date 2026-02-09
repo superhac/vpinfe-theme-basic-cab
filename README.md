@@ -1,1 +1,1 @@
-# vpinfe-theme-carousel2
+# vpinfe-theme-basic-cab
