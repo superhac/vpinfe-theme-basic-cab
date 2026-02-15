@@ -60,22 +60,30 @@ img.fullscreen {
   opacity: 1;
 }
 
+:root {
+  --menu-rotation: 0deg;
+  --menu-width: 50vw;
+  --menu-height: 50vh;
+}
+
 #menu-frame {
-  width: 50vw;
-  height: 50vh;
+  width: var(--menu-width);
+  height: var(--menu-height);
   border: none;
   border-radius: 1rem;
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
   background: transparent;
+  transform: rotate(var(--menu-rotation));
   transform-origin: center center;
 }
 
 #collection-menu-frame {
-  width: 50vw;
-  height: 50vh;
+  width: var(--menu-width);
+  height: var(--menu-height);
   border: none;
   border-radius: 1rem;
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
   background: transparent;
+  transform: rotate(var(--menu-rotation));
   transform-origin: center center;
 }
