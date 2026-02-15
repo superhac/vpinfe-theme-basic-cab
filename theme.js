@@ -45,8 +45,10 @@ function applyMenuRotation() {
             overlay.style.position = 'absolute';
             overlay.style.top = '50%';
             overlay.style.left = '50%';
-            overlay.style.transform = `translate(-50%, -50%) rotate(${-rotation}deg)`;
-            if (Math.abs(rotation) === 90 || Math.abs(rotation) === 270) {
+            overlay.style.transformOrigin = 'center center';
+            const menuRotation = -90;
+            overlay.style.transform = `translate(-50%, -50%) rotate(${menuRotation}deg)`;
+            if (Math.abs(menuRotation) % 180 === 90) {
                 overlay.style.width = '100vh';
                 overlay.style.height = '100vw';
             } else {
