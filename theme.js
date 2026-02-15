@@ -14,9 +14,37 @@ vpin.ready.then(async () => {
 
     });
 
+    applyMenuRotation();
     setImage();
     vpin.registerInputHandler(handleInput);
 });
+
+// Apply rotation to a menu frame element based on config
+function applyRotationToFrame(el) {
+    const rotation = vpin.tableOrientation === 'portrait' ? 0 : vpin.tableRotation;
+    if (rotation !== 0) {
+        el.style.transform = `rotate(${rotation}deg)`;
+        el.style.width = '50vh';
+        el.style.height = '50vw';
+    }
+}
+
+// Watch for menu frames being added to the DOM and apply rotation
+function applyMenuRotation() {
+    const overlayRoot = document.getElementById('overlay-root');
+    if (!overlayRoot) return;
+
+    const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            for (const node of mutation.addedNodes) {
+                if (node.id === 'menu-frame' || node.id === 'collection-menu-frame') {
+                    applyRotationToFrame(node);
+                }
+            }
+        }
+    });
+    observer.observe(overlayRoot, { childList: true });
+}
 
 // circular tables index
 function wrapIndex(index, length) {
