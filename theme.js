@@ -22,8 +22,54 @@ vpin.ready.then(async () => {
 // Set CSS custom properties for menu rotation based on config
 function applyMenuRotation() {
     const rotation = vpin.tableRotation;
+    console.log(`[applyMenuRotation] tableOrientation=${vpin.tableOrientation}, tableRotation=${vpin.tableRotation}, rotation=${rotation}, type=${typeof rotation}`);
     const root = document.documentElement;
     root.style.setProperty('--menu-rotation', `${rotation}deg`);
+    if (windowName === "table") {
+        const img = document.getElementById('fsImage');
+        if (img) {
+            img.style.position = 'absolute';
+            img.style.top = '50%';
+            img.style.left = '50%';
+            img.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+            if (Math.abs(rotation) === 90 || Math.abs(rotation) === 270) {
+                img.style.width = '100vh';
+                img.style.height = '100vw';
+            } else {
+                img.style.width = '100vw';
+                img.style.height = '100vh';
+            }
+        }
+        const overlay = document.getElementById('overlay-root');
+        if (overlay) {
+            overlay.style.position = 'absolute';
+            overlay.style.top = '50%';
+            overlay.style.left = '50%';
+            overlay.style.transform = `translate(-50%, -50%) rotate(${-rotation}deg)`;
+            if (Math.abs(rotation) === 90 || Math.abs(rotation) === 270) {
+                overlay.style.width = '100vh';
+                overlay.style.height = '100vw';
+            } else {
+                overlay.style.width = '100vw';
+                overlay.style.height = '100vh';
+            }
+        }
+        const remoteOverlay = document.getElementById('remote-launch-overlay');
+        if (remoteOverlay) {
+            remoteOverlay.style.position = 'absolute';
+            remoteOverlay.style.top = '50%';
+            remoteOverlay.style.left = '50%';
+            remoteOverlay.style.transformOrigin = 'center center';
+            remoteOverlay.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+            if (Math.abs(rotation) === 90 || Math.abs(rotation) === 270) {
+                remoteOverlay.style.width = '100vh';
+                remoteOverlay.style.height = '100vw';
+            } else {
+                remoteOverlay.style.width = '100vw';
+                remoteOverlay.style.height = '100vh';
+            }
+        }
+    }
     if (rotation !== 0) {
         root.style.setProperty('--menu-width', '50vh');
         root.style.setProperty('--menu-height', '50vw');
